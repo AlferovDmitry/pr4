@@ -4,20 +4,31 @@ class Program
 {
     static void Main()
     {
-        Console.Write("Введите целое число N (> 0): ");
-        int N = int.Parse(Console.ReadLine());
+        int N, M;
 
-        if (N <= 0)
+        // Ввод значения N
+        Console.WriteLine("Введите начальное целое число N:");
+        while (!int.TryParse(Console.ReadLine(), out N))
         {
-            Console.WriteLine("Число должно быть больше 0.");
-            return;
+            Console.WriteLine("Ошибка: введите корректное целое число.");
         }
 
-        // Вычисление суммы от N до 2N
-        int a = N;
-        int b = 2 * N;
-        int sum = ((b - a + 1) * (a + b)) / 2;
+        // Ввод значения M
+        Console.WriteLine("Введите конечное целое число M:");
+        while (!int.TryParse(Console.ReadLine(), out M) || M < N)
+        {
+            Console.WriteLine("Ошибка: введите корректное целое число больше или равное N.");
+        }
 
-        Console.WriteLine($"Сумма от {N} до {2 * N} равна: {sum}");
+        // Вычисление суммы
+        int sum = CalculateSum(N, M);
+        Console.WriteLine($"Сумма от {N} до {M} равна: {sum}");
+    }
+
+    static int CalculateSum(int N, int M)
+    {
+        return (M - N + 1) * (N + M) / 2; // Используем формулу суммы
     }
 }
+
+
